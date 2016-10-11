@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 11, 2016 at 01:40 PM
+-- Generation Time: Oct 11, 2016 at 04:40 PM
 -- Server version: 5.5.52-0ubuntu0.14.04.1
 -- PHP Version: 7.0.11-2+deb.sury.org~trusty+1
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `hospital`
 --
-CREATE DATABASE IF NOT EXISTS `hospital` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `hospital`;
 
 -- --------------------------------------------------------
 
@@ -120,16 +118,15 @@ CREATE TABLE `patient` (
 --
 ALTER TABLE `appointment`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `apptID` (`id`),
   ADD KEY `patientID` (`patientID`),
-  ADD KEY `empID` (`empID`);
+  ADD KEY `empID` (`empID`),
+  ADD KEY `status` (`status`);
 
 --
 -- Indexes for table `bill`
 --
 ALTER TABLE `bill`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `billID` (`id`),
   ADD KEY `patientID_2` (`apptID`);
 
 --
@@ -137,14 +134,13 @@ ALTER TABLE `bill`
 --
 ALTER TABLE `employee`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `empID` (`id`);
+  ADD KEY `type` (`type`);
 
 --
 -- Indexes for table `patient`
 --
 ALTER TABLE `patient`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `patientID` (`id`),
   ADD KEY `dob` (`dob`);
 
 --
@@ -155,7 +151,7 @@ ALTER TABLE `patient`
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `bill`
 --
@@ -165,7 +161,7 @@ ALTER TABLE `bill`
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `patient`
 --
